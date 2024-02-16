@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+    background: #29292a;
+    color: #fffefd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    width: 350px;
+    height: 500px;
+    box-shadow: 0 0 10px 10px #fc59d7;
+    perspective: 1000px;
+}
+
+.innerbox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.logincard, .registrationcard{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 45px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+}
+
+.registrationcard {
+    transform: rotateY(180deg);
+}
+
+.registrationcard .flip-content {
+    transform: rotateY(-180deg);
+}
+
+.card h2{
+    font-weight: normal;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.logincard label {
+    font-size: 15px; 
+    margin-bottom: 2px;
+}
+
+.registrationcard label{
+    font-size: 15px; 
+    margin-bottom: 2px;
+}
+
+.input-box{
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fffefd;
+    margin: 6px 0;
+    height: 32px;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    color: #fffefd;
+    margin-bottom: 5px;
+}
+
+::placeholder{
+    color: #fffefd;
+    font-size: 12px;
+}
+
+button{
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fffefd;
+    margin: 35px 0 10px;
+    height: 32px;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    color: #fffefd;
+    cursor: pointer;
+}
+
+.submit-btn{
+    position: relative;
+    border-color: rgb(13, 212, 13);
+    margin-bottom: 50px;
+}
+
+.card .btn{
+    margin-top: 30px;
+}
+
+.logincard .btn {
+    margin-top: 0;
+}
+
+.registrationcard .btn{
+    margin-top: 0;
+}
+
+#U-Label {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
