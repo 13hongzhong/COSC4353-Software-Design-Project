@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login and Registration Form</title>
+    <link rel="stylesheet" href="Login-Registration-Style.css">
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="card">
+            <div class="innerbox" id="card">
+                <div class="logincard">
+                    <h2>LOGIN</h2>
+                    <form>
+                        <label for="">Email</label>
+                        <input type="email" class="input-box" placeholder="Your email" required>
+                        <label for="">Password</label>
+                        <input type="password" class="input-box" placeholder="Password" required>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                    <label id="U-Label" for="">Don't have an account?</label>
+                    <button type="button" class="btn" onclick="openRegisterForm()">Register Now</button>
+                </div>
+                <div class="registrationcard">
+                    <h2>Register</h2>
+                    <form>
+                        <label for="">Full Name</label>
+                        <input type="text" class="input-box" placeholder="Your name" required>
+                        <label for="">Email</label>
+                        <input type="email" class="input-box" placeholder="Your email" required>
+                        <label for="">Password</label>
+                        <input type="password" class="input-box" placeholder="Password" required>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                    <label id="U-Label" for="">Already have an account?</label>
+                    <button type="button" class="btn" onclick="openLoginForm()">Login</button>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var card = document.getElementById("card");
+        function openRegisterForm(){
+            card.style.transform = "rotateY(-180deg)";
+        }
+        function openLoginForm(){
+            card.style.transform = "rotateY(0deg)";
+        }
+    </script>
+
+</body>
+
+</html>
