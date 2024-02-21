@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Quote</title>
+    <style>
+        h2 {
+            color: #fffefd;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #29292a;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            border-color: #fc59d7;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fffefd;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #fc59d7;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2></h2>
+    <form id="fuelQuoteForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="gallonsRequested">Gallons Requested:</label>
+        <input type="number" id="gallonsRequested" name="gallonsRequested" required>
+
+        <label for="deliveryDate">Delivery Date:</label>
+        <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+        <button type="submit">Get Quote</button>
+    </form>
+
+    <script>
+        document.getElementById("fuelQuoteForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Perform actions with form data (e.g., send data to server for calculation)
+            // You may want to use JavaScript to handle the form submission and interact with a server or API.
+            // This example only prevents the default form submission behavior.
+
+            // Replace this comment with the logic to handle the form data as needed.
+            alert("Form submitted. Handle the data as needed.");
+        });
+    </script>
+
+</body>
+</html>
