@@ -2,6 +2,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: normal;
+    color: #fffefd;
 }
 
 body {
@@ -23,13 +24,20 @@ body {
     margin-left: auto;
 }
 
+.content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card {
-    width: 50%;
+    width: 33%;
     margin: auto;
-    margin-top: 16px;
-    background-color: #fffefd;
+    background-color: #29292a;
     padding: 16px;
     border-radius: 12px;
+    box-shadow: 0 0 10px 10px #fc59d7;
 }
 
 .card-title {
@@ -74,8 +82,15 @@ select {
 
     margin: 1px;
     height: 32px;
+
+    color: #29292a;
 }
 
 label {
     margin-bottom: 4px;
+}
+
+option {
+    color: #29292a;
+
 }
