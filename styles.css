@@ -1,13 +1,77 @@
-* {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: normal;
-    color: #fffefd;
-}
-
-body {
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Dosis' , sans-serif;
     background-color: #29292a;
 }
+
+.container {
+    text-align: center;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.line {
+    position: absolute;
+    width: 100%;
+    height: 2px; 
+    background-color: #48484a; 
+    top: 100px;
+    left: 0;
+}
+
+.logo {
+    width: 200px;
+    cursor: pointer;
+    margin: 20px 25px 40px 5px; 
+    margin-left: 22px;
+}
+
+nav {
+    flex: 1;
+    margin-left: 30px; 
+    margin-bottom: 28px; 
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 50px;
+    margin-bottom: 3px;  
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fffefd;
+    font-size: 18px;
+}
+
+nav ul li a:hover{
+    color: #fc59d7;
+}
+
+.login-button {
+    background-color: #fc59d7;
+    color: #fffefd;
+    padding: 15px 60px; 
+    border-radius: 20px; 
+    display: inline-block; 
+    text-decoration: none;
+    border: none;
+    margin-left: 600px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #73b8e6; 
+}
+
 
 .button-update {
     display: flex;
@@ -22,6 +86,7 @@ body {
     padding-top: 8px;
     padding-bottom: 8px;
     margin-left: auto;
+    cursor: pointer;
 }
 
 .content {
@@ -29,6 +94,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .card {
@@ -38,12 +104,15 @@ body {
     padding: 16px;
     border-radius: 12px;
     box-shadow: 0 0 10px 10px #fc59d7;
+    color:#fffefd;
 }
 
 .card-title {
     margin-top: 0px;
     font-size: 24px;
     font-weight: 500;
+    
+    
 }
 
 .form-group {
@@ -56,34 +125,17 @@ body {
     flex-direction: column;
 }
 
-input {
-    display: inline-block;
-    font-size: 14px;
-    background-origin: padding-box;
-    background-color: rgb(249, 250, 251);
-    border-width: 0.8px;
-    border-radius: 4px;
-    border-color: rgb(192, 196, 201);
-    padding-left: 8px;
-
-    margin: 1px;
-    height: 32px;
-}
-
+input,
 select {
     display: inline-block;
     font-size: 14px;
-    background-origin: padding-box;
-    background-color: rgb(249, 250, 251);
-    border-width: 0.8px;
+    background-color: #29292a;
+    border: 1px solid #fffefd;
     border-radius: 4px;
-    border-color: rgb(192, 196, 201);
     padding-left: 8px;
-
     margin: 1px;
     height: 32px;
-
-    color: #29292a;
+    color: #fffefd;
 }
 
 label {
@@ -94,3 +146,32 @@ option {
     color: #29292a;
 
 }
+
+input::placeholder,
+select::placeholder {
+    color: #fffefd;
+}
+
+select#stateSelect {
+    display: inline-block;
+    font-size: 14px;
+    background-color: #29292a;
+    border: 1px solid white; 
+    border-radius: 4px;
+    padding-left: 8px;
+    margin: 1px;
+    height: 32px;
+    color: white;
+}
+
+
+select#stateSelect option {
+    background-color: white;
+    color: black; 
+}
+
+.profile {
+    margin-left: 460px;
+}
+
+
