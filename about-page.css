@@ -106,25 +106,6 @@ nav ul li a:hover{
     color: #7d7d7d;
 }
 
-.social-links {
-    margin: 14px;
-}
-
-.social-links a {
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    transition: .4s;
-}
-
-.social-links a:hover {
-    transform: scale(1.5);
-}
-
-.social-links a i {
-    color: #444;
-}
-
 @media screen and (max-width: 600px) {
     .teams {
         max-width: 100%;
