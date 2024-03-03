@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="client-profile-management.css">
     <title>Fuel Pricing</title>
 </head>
 <body>
@@ -16,7 +16,6 @@
         <a href="frontpage.html">
             <img src="images/logo.png" class="logo" alt="Logo">
         </a>
-
         <nav>
             <ul>
                 <li><a href="frontpage.html">Home</a></li>
@@ -25,9 +24,6 @@
                 <li><a href="quoteHistory.html">Fuel Quote History</a></li>
                 <li><a href="client-profile-management.html" class="profile">Profile</a></li>
                 <li><a href="" class="log-out">Log Out</a></li>
-
-                
-                
             </ul>
         </nav>
         <div class="line"></div>
@@ -36,25 +32,25 @@
     <div class="content">
         <div class="card">
             <h3 class="card-title">Content Profile Management</h3>
-            <form action="">
+            <form action="" onsubmit="handleForm(event)">
                 <div class="form-group">
                     <label for="">Full Name</label>
-                    <input class="input-box" type="text" placeholder="Your full name" maxlength="50" required>
+                    <input name="fullName" id="fullName" class="input-box" type="text" placeholder="Your full name" maxlength="50" required>
                 </div>
                 <div class="form-group">
                     <label for="">Address</label>
-                    <input class="input-box" type="text" placeholder="Your address" maxlength="100" required>
+                    <input name="address" id="address" class="input-box" type="text" placeholder="Your address" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="">Address 2</label>
-                    <input class="input-box" type="text" placeholder="Your address 2" maxlength="100">
+                    <input name="address2" id="address2" class="input-box" type="text" placeholder="Your address 2" maxlength="100">
                 </div>
                 <div class="form-group">
                     <label for="">City</label>
-                    <input class="input-box" type="text" placeholder="Your city" maxlength="100" required>
+                    <input name="city" id="city" class="input-box" type="text" placeholder="Your city" maxlength="100" required>
                 </div>
                 <div class="form-group">
-                    <label for="stateSelect">City</label>
+                    <label for="stateSelect">State</label>
                     <select id="stateSelect" name="stateSelect">
                         <option value="" disabled selected>Select a state</option>
                         <option value="AL">Alabama</option>
@@ -111,12 +107,44 @@
                 </div>
                 <div class="form-group">
                     <label for="">Zipcode</label>
-                    <input class="input-box" type="text" placeholder="Your zipcode" maxlength="9" minlength="5" required>
+                    <input name="zipcode" id="zipcode" class="input-box" type="text" placeholder="Your zipcode" maxlength="9" minlength="5" required>
                 </div>
-                <button class="button-update">Update</button>
+                <input type="submit" id="updateButton" class="button-update" method="post" value="Update">
             </form>
         </div>
     </div>
+    <script>
+        async function handleForm(event) {
+            event.preventDefault();
+            console.log("submitted");
+            console.log(event.target.elements.address.value)
+            
+        }
 
+        function populateFields(info) {
+            document.getElementById("fullName").value = info?.fullName|| "";
+            document.getElementById("address").value = info?.address || "";
+            document.getElementById("address2").value = info?.address2 || "";
+            document.getElementById("city").value = info?.city || "";
+            document.getElementById("stateSelect").value = info?.state || "";
+            document.getElementById("zipcode").value = info?.zipCode || "";
+        }
+
+        async function main() {
+            res = await fetch(
+                "/api/getUserData",
+                {            
+                    headers: { "Content-Type": "application/json" },
+                    method: "POST",
+                    body: ""
+                }
+            )
+            body = await res.json()
+            populateFields(body);
+
+
+        }
+        main()
+    </script>
 </body>
 </html>
