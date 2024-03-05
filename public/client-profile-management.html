@@ -9,6 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="client-profile-management.css">
     <title>Fuel Pricing</title>
+    <script>
+        fetch("/auth/isloggedin", { method: "post" }).then((res) => {
+            if (res.redirected) {
+                window.location.href = res.url;
+            }
+        });
+    </script>
 </head>
 <body>
     
@@ -23,7 +30,9 @@
                 <li><a href="fuelQuote.html">Fuel Quote Form</a></li>
                 <li><a href="quoteHistory.html">Fuel Quote History</a></li>
                 <li><a href="client-profile-management.html" class="profile">Profile</a></li>
-                <li><a href="" class="log-out">Log Out</a></li>
+                <li>
+                    <a href="/frontpage.html" class="log-out" onclick="fetch('/auth/logout', { method: 'post' })">Log Out</a>
+                </li>
             </ul>
         </nav>
         <div class="line"></div>

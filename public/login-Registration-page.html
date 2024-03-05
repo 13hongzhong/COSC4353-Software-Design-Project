@@ -45,13 +45,13 @@
                 </div>
                 <div class="registrationcard">
                     <h2>Register</h2>
-                    <form>
+                    <form action="/auth/register" method="post">
                         <label for="">Full Name</label>
-                        <input type="text" class="input-box" placeholder="Your name" required>
+                        <input name="fullName" id="fullName" type="text" class="input-box" placeholder="Your name" required>
                         <label for="">Username</label>
-                        <input type="text" class="input-box" placeholder="Username" required>
+                        <input name="username" id="username" type="text" class="input-box" placeholder="Username" required>
                         <label for="">Password</label>
-                        <input type="password" class="input-box" placeholder="Password" required>
+                        <input name="password" id="password" type="password" class="input-box" placeholder="Password" required>
                         <button type="submit" class="submit-btn">Submit</button>
                     </form>
                     <label id="U-Label" for="">Already have an account?</label>

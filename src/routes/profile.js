@@ -3,7 +3,6 @@ const passport = require('passport');
 const router = express.Router();
 
 router.post("/getUserData", (req, res) => {
-    console.log(req.user);
     res.json({
         fullName: "Alice Bob",
         address: "5128 Gotham Park Lane",
@@ -14,7 +13,12 @@ router.post("/getUserData", (req, res) => {
 })
 
 router.post("/updateUserData", (req, res) => {
+    if (!req.isAuthenticated()) {
+        res.redirect('/login-Registration-page.html');
+    }
     console.log(req.body)
+    // add db call to update data
+    res.send("success!")
 })
 
 module.exports = router
