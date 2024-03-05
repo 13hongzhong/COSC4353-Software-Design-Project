@@ -2,7 +2,7 @@
   "name": "cosc4353-software-design-project",
   "description": "Install the dependencies using:\r `npm install`",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/13hongzhong/COSC4353-Software-Design-Project.git"
@@ -15,8 +15,8 @@
   },
   "homepage": "https://github.com/13hongzhong/COSC4353-Software-Design-Project#readme",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
