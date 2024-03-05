@@ -32,7 +32,7 @@
     <div class="content">
         <div class="card">
             <h3 class="card-title">Content Profile Management</h3>
-            <form action="" onsubmit="handleForm(event)">
+            <form action="/profile/updateUserData" method="post">
                 <div class="form-group">
                     <label for="">Full Name</label>
                     <input name="fullName" id="fullName" class="input-box" type="text" placeholder="Your full name" maxlength="50" required>
@@ -50,8 +50,8 @@
                     <input name="city" id="city" class="input-box" type="text" placeholder="Your city" maxlength="100" required>
                 </div>
                 <div class="form-group">
-                    <label for="stateSelect">State</label>
-                    <select id="stateSelect" name="stateSelect">
+                    <label for="state">State</label>
+                    <select id="state" name="state">
                         <option value="" disabled selected>Select a state</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -114,25 +114,18 @@
         </div>
     </div>
     <script>
-        async function handleForm(event) {
-            event.preventDefault();
-            console.log("submitted");
-            console.log(event.target.elements.address.value)
-            
-        }
-
         function populateFields(info) {
             document.getElementById("fullName").value = info?.fullName|| "";
             document.getElementById("address").value = info?.address || "";
             document.getElementById("address2").value = info?.address2 || "";
             document.getElementById("city").value = info?.city || "";
-            document.getElementById("stateSelect").value = info?.state || "";
-            document.getElementById("zipcode").value = info?.zipCode || "";
+            document.getElementById("state").value = info?.state || "";
+            document.getElementById("zipcode").value = info?.zipcode || "";
         }
 
         async function main() {
             res = await fetch(
-                "/api/getUserData",
+                "/profile/getUserData",
                 {            
                     headers: { "Content-Type": "application/json" },
                     method: "POST",
@@ -141,10 +134,10 @@
             )
             body = await res.json()
             populateFields(body);
-
-
         }
+
         main()
-    </script>
+
+</script>
 </body>
 </html>
