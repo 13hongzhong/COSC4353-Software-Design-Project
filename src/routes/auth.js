@@ -38,6 +38,83 @@ router.post('/login', passport.authenticate('local', {
     failureMessage: true
 }));
 
+
+// Endpoint to handle user login
+router.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Check if username or password is missing
+    if(!username || !password){
+        // Send 400 bad request response
+        res.status(400).send({message: "Must provide a username and password", cd: null});
+          return;
+    }
+
+    // Query the databse to find user using username
+    pool.query(
+        "SELECT * FROM user_auth WHERE username = ?",
+        [username],
+        async(err, result) => {
+            
+            // if error occurs during the database query
+            if(err){
+                console.error(err);
+                res.status(500).send({message: "Failed to login", cd: null});
+                return;
+            }
+
+            // if no user id found with the given username
+            if(result.length !== 1){
+                res.status(500).send({message: "Failed to login", cd: null});
+                return;
+            }
+
+            // check is the user account is active
+            if(!result[0].active){
+                res.status(500).send({message: "Account is not active", cd: null});
+                return;
+            }
+
+            // Verify the provided password with the hashed password stored in the database
+            const hashedPassword = result[0].password;
+            const isPassword = await argon2.verify(hashedPassword, password);
+
+            // if password verification fails
+            if(!isPassword){
+                res.status(500).send({message: "Wrong Password", cd: null});
+                return;
+            }
+            
+            // Query the database to retrieve user data
+            pool.query(
+                "SELECT * FROM user WHERE username = ?",
+                [username],
+                (err, result2) => {
+
+                    // if an error occurs during database query
+                    if(err){
+                        console.error(err);
+                        res.status(500).send({message: "Failed to login", cd: null});
+                        return;
+                    }
+
+                    // if no user is found with the provided username
+                    if(result.length !== 1){
+                        res.status(500).send({message: "Failed to login", cd: null});
+                        return;
+                    }
+
+                    // Send a success response with user data
+                    res.send({message: "Login Successful", data: result[0] });
+                }
+            );
+        }
+    );
+});
+
+
+
 router.post('/register', (req, res) => {
     var info = req.body;
 
