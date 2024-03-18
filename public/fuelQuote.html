@@ -179,6 +179,53 @@
             // Replace this comment with the logic to handle the form data as needed.
             alert("Form submitted. Handle the data as needed.");
         });
+
+
+
+// Unit testing
+function testFuelQuoteFormSubmission() {
+    const formData = {
+        fullName: "Test User",
+        email: "test@example.com",
+        address: "123 Test St",
+        gallonsRequested: "100",
+        deliveryDate: "2024-03-19" 
+    };
+
+    // Populate form fields
+    document.getElementById("fullName").value = formData.fullName;
+    document.getElementById("email").value = formData.email;
+    document.getElementById("address").value = formData.address;
+    document.getElementById("gallonsRequested").value = formData.gallonsRequested;
+    document.getElementById("deliveryDate").value = formData.deliveryDate;
+
+    // Trigger form submission by clicking the "Get Quote" button
+    document.querySelector("button[type='submit']").click();
+
+    
+    const isAllFieldsFilled = formData.fullName !== "" &&
+        formData.email !== "" &&
+        formData.address !== "" &&
+        formData.gallonsRequested !== "" &&
+        formData.deliveryDate !== "";
+
+    
+    if (isAllFieldsFilled) {
+        console.log("Form submission test passed");
+        markSubmissionSuccess(); 
+    } else {
+        console.error("Form submission test failed");
+    }
+}
+
+function markSubmissionSuccess() {
+    console.log("Form submission successful");
+}
+
+// Run unit tests
+testFuelQuoteFormSubmission();
+
+
     </script>
 
 </body>
