@@ -147,6 +147,46 @@
 
         main()
 
+
+
+// Unit testing
+function testPopulateFields() {
+    const mockData = {
+        fullName: "Test User",
+        address: "123 Test St",
+        address2: "Apt 101",
+        city: "Test City",
+        state: "TX",
+        zipcode: "12345"
+    };
+
+    populateFields(mockData);
+
+    // Check if fields are populated correctly
+    if (document.getElementById("fullName").value !== mockData.fullName ||
+        document.getElementById("address").value !== mockData.address ||
+        document.getElementById("address2").value !== mockData.address2 ||
+        document.getElementById("city").value !== mockData.city ||
+        document.getElementById("state").value !== mockData.state ||
+        document.getElementById("zipcode").value !== mockData.zipcode) {
+        console.error("populateFields test failed");
+    } else {
+        console.log("populateFields test passed");
+    }
+
+    // Check if state dropdown is populated and selected correctly
+    const stateDropdown = document.getElementById("state");
+    if (stateDropdown.options[stateDropdown.selectedIndex].value !== mockData.state) {
+        console.error("State dropdown test failed");
+    } else {
+        console.log("State dropdown test passed");
+    }
+}
+
+// Run unit tests
+testPopulateFields();
+
+
 </script>
 </body>
 </html>
