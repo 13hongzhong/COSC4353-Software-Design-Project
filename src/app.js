@@ -7,7 +7,7 @@ const passport = require("passport")
 const app = express();
 const profileRouter = require('./routes/profile');
 const authRouter = require('./routes/auth');
-
+const quoteRouter = require('./routes/quote')
 
 app.use(logger('dev'))
 app.use(express.json());
@@ -25,5 +25,6 @@ app.use(passport.authenticate("session"))
 
 app.use("/profile", profileRouter);
 app.use("/auth", authRouter);
+app.use("/quote", quoteRouter);
 
 module.exports = app;
