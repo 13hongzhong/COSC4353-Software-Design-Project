@@ -155,20 +155,26 @@ select::placeholder {
 select#stateSelect {
     display: inline-block;
     font-size: 14px;
-    background-color: #29292a;
+    background-color: #ffffff;
     border: 1px solid white; 
     border-radius: 4px;
     padding-left: 8px;
     margin: 1px;
     height: 32px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 
 select#stateSelect option {
     background-color: white;
-    color: black; 
+    color: rgb(0, 0, 0); 
 }
+
+#state option {
+    color: black; 
+    background-color: white; 
+}
+
 
 .profile {
     margin-left: 460px;
