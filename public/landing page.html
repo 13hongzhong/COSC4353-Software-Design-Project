@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content=""width=device-width, initial-scale="1.0">
+<title>Fuelcaster</title>
+<link rel="stylesheet" href="home page.css">
+<link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+
+
+
+
+<div class="container">
+    <div class="navbar">
+        <a href="frontpage.html">
+            <img src="images/logo.png" class="logo" alt="Logo">
+          </a>
+
+        <nav>
+
+            <ul>
+
+                <li><a href="frontpage.html">Home</a></li>
+                <li><a href="about-page.html">About</a></li>
+                <li><a href="client-profile-management.html">Client Profile Management</a></li>
+                <li><a href="fuelQuote.html">Fuel Quote Form</a></li>
+                <li><a href="quoteHistory.html">Quote History</a></li>
+                <a href="frontpage.html"><button class="login-button">Log out</button></a>
+
+    
+                
+            </ul>
+
+            
+
+        </nav>
+        <div class="line"></div>
+</div>
+
+<div class="row">
+
+    <div class="col-1">
+        <h2>Premium Fuel<br> High-Octane Gas </h2>
+        <h3>Experience the pinnacle of engine performance with our premium high-octane gas. Unleash the power within as you fuel your journey 
+            with superior efficiency and acceleration. Elevate your drive to new heights – choose Fuelcaster High Octane, where every drop 
+            takes you farther, faster.</h3>
+        <p class="multiple-text"></p>
+        
+        <!--<h4>
+          <a href="login-Registration-page.html">
+            <button type="button" class="quota-button">
+                Sign Up Now
+                <img src="images/arrow1.png" class="arrow1">
+            </button>
+          </a>
+        </h4>-->
+        
+    </div>
+
+    <div class="col-2">
+        <img src="images/gas.png" class="gas">
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var typed = new Typed(".multiple-text", {
+            strings: ["$2.60 per gallon", "$2.80 per gallon", "$2.90 per gallon", "$3.00 per gallon", "$3.10 per gallon"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,
+            loop: true,
+            showCursor: false,
+            onStart: function (self) {
+              self.el.innerHTML = "&nbsp;"; 
+            },
+            onComplete: function (self) {
+              self.el.textContent = self.strings[0];
+            },
+          });
+        });
+      </script>
+      
+
+
+</body>
+
+
+
+</html>
