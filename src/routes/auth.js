@@ -170,7 +170,7 @@ router.post('/register', (req, res) => {
             // send back user info to the client with the ID
             res.status(201).send({ message: "Registeration Successful", data: {id, username, fullName,}});
     });
-})
+});
 
 
 router.post('/logout', (req, res) => {
@@ -180,6 +180,6 @@ router.post('/logout', (req, res) => {
         }
         res.redirect('/frontpage.html');
     })
-})
+});
 
 module.exports = router
