@@ -26,6 +26,17 @@ const validateFuelQuote = (req, res, next) => {
     next();
 };
 
+const validateLogin = [
+    body('username').notEmpty().isLength(min=1, max=50),
+    body('password').notEmpty().isLength(min=1, max=50),
+]
+
+const validateRegistration = [
+    body('fullName').notEmpty().isLength(min=1, max=50),
+    body('username').notEmpty().isLength(min=1, max=50),
+    body('password').notEmpty().isLength(min=1, max=50),
+]
+
 const validateProfile = (req, res, next) => {
     payload = req.body
     if (!payload.fullName || (typeof payload.fullName !== "string") || payload.fullName.length > 50) {
@@ -49,4 +60,4 @@ const validateProfile = (req, res, next) => {
     next();
 }
 
-module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile, isLoggedIn};
+module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile, isLoggedIn, validateRegistration, validateLogin};
