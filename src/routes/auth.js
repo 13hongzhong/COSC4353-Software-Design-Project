@@ -123,8 +123,11 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 
-// router.post('/register', (req, res) => {
-//     var info = req.body;
+router.post('/register', (req, res) => {
+    console.log(req.body);
+    res.status(200);
+    
+    // var info = req.body;
 
 //     // add req.username, req.fullName, and req.password to database, then redirect to profile management
     
@@ -178,7 +181,7 @@ router.post('/login', passport.authenticate('local', {
 //             // send back user info to the client with the ID
 //             res.status(201).send({ message: "Registeration Successful", data: {id, username, fullName,}});
 //     });
-// })
+})
 
 // removes the user field from the users session, passport attaches a logout function
 // to the request object in its middleware we can use
