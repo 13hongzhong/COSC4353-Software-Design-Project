@@ -12,7 +12,7 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
     return cb(null, false, { message: 'Incorrect username or password.' })
 
 
-    // validate the username/password when logging in
+    // validate the username/password when logging in, we will enable when db is up
 //     const username = req.body.username;
 //     const password = req.body.password;
 
@@ -117,7 +117,7 @@ router.post("/isloggedin", (req, res) => {
 // Endpoint to handle user login
 // authenticates a user and attaches a user id to their session if successful
 router.post('/login', passport.authenticate('local', {
-    successReturnToOrRedirect: '/client-profile-management.html',
+    successReturnToOrRedirect: '/landing page.html',
     failureRedirect: '/login-Registration-page.html',
     failureMessage: true
 }));
