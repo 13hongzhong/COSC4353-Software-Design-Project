@@ -17,4 +17,8 @@ const validateFuelQuote = (req, res, next) => {
     next();
 };
 
-module.exports = {fuelQuoteValidation, validateFuelQuote};
+const validateProfile = (req, res, next) => {
+
+}
+
+module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile};
