@@ -17,5 +17,5 @@ exports.updateProfile = (req, res) => {
     }
     console.log(req.body)
     // add db call to update data
-    res.send("success!")
+    res.redirect('/landing page.html')
 }
