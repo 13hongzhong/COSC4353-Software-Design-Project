@@ -148,7 +148,7 @@ nav ul li a:hover{
     display: inline-block; 
   }
   
-  .login-button {
+  .logout-button {
     background-color: #fc59d7;
     color: #fffefd;
     padding: 15px 60px; 
@@ -156,12 +156,12 @@ nav ul li a:hover{
     display: inline-block; 
     text-decoration: none;
     border: none;
-    margin-right: 100px;
+    margin-left: 200px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+.logout-button:hover {
     background-color: #73b8e6;
 }
 
