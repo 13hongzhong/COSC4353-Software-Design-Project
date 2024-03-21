@@ -1,4 +1,13 @@
-const { validationResult, body } = require('express-validation');
+const { validationResult, body } = require('express-validator');
+
+// middleware to check if they are logged in
+const isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        res.redirect("/login-Registration-page.html")
+    }
+}
 
 // validation of fuel quote data
 const fuelQuoteValidation = [
@@ -17,4 +26,27 @@ const validateFuelQuote = (req, res, next) => {
     next();
 };
 
-module.exports = {fuelQuoteValidation, validateFuelQuote};
+const validateProfile = (req, res, next) => {
+    payload = req.body
+    if (!payload.fullName || (typeof payload.fullName !== "string") || payload.fullName.length > 50) {
+        res.status(400);
+    }
+    if (!payload.address || (typeof payload.address !== "string") || payload.address.length > 100) {
+        res.status(400);
+    }
+    if (payload.address2 && ((typeof payload.address !== "string") || payload.address.length > 100)) {
+        res.status(400);
+    }
+    if (!payload.city || (typeof payload.city !== "string") || payload.city.length > 100) {
+        res.status(400);
+    }
+    if (!payload.state || (typeof payload.state !== "string") || payload.state.length > 2) {
+        res.status(400);
+    }
+    if (!payload.zipcode || (typeof payload.zipcode !== "string") || payload.zipcode.length > 9 || payload.zipcode.length < 5) {
+        res.status(400);
+    }
+    next();
+}
+
+module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile, isLoggedIn};

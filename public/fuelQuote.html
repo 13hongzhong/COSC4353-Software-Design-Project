@@ -62,7 +62,7 @@
             color: #fc59d7;
         }
 
-        .login-button {
+        .logout-button {
             background-color: #fc59d7;
             color: #fffefd;
             padding: 15px 60px; 
@@ -70,12 +70,12 @@
             display: inline-block; 
             text-decoration: none;
             border: none;
-            margin-left: 600px;
+            margin-left: 500px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .login-button:hover {
+        .logout-button:hover {
             background-color: #73b8e6; 
         }
 
@@ -138,10 +138,10 @@
 
         <nav>
             <ul>
-                <li><a href="frontpage.html">Home</a></li>
-                <li><a href="about-page.html">About</a></li>
-                <li><a href="fuelQuote.html">Fuel Quote Form</a></li>
-                <li><a href="quoteHistory.html">Fuel Quote History</a></li>
+                <li><a href="landing page.html">Home</a></li>
+                <li><a href="client-profile-management.html">Client Profile Management</a></li>
+                <li><a href="quoteHistory.html"> Fuel Quote History</a></li>
+                <a href="frontpage.html"><button class="logout-button">Log out</button></a>
                 
             </ul>
         </nav>
@@ -200,7 +200,7 @@ function testFuelQuoteFormSubmission() {
     document.getElementById("deliveryDate").value = formData.deliveryDate;
 
     // Trigger form submission by clicking the "Get Quote" button
-    document.querySelector("button[type='submit']").click();
+    // document.querySelector("button[type='submit']").click();
 
     
     const isAllFieldsFilled = formData.fullName !== "" &&

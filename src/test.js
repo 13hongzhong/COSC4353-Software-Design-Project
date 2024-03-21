@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../index');
-const { mockFuelQuoteHistory, mockFuelQuote } = require('./mockFuelData');
+const app = require('./app');
+const { mockFuelQuoteHistory, mockFuelQuote } = require('./mock/mockFuelData');
 
 describe('Fuel Quote Controller', () => {
     it('GET /api/fuel-quotes/history - should return fuel quote history', async () => {
@@ -27,3 +27,7 @@ describe('Fuel Quote Controller', () => {
         expect(response.status).toBe(400);
     });
 });
+
+
+describe('')
+
