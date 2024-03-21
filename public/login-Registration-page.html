@@ -26,7 +26,7 @@
             <div class="innerbox" id="card">
                 <div class="logincard">
                     <h2>LOGIN</h2>
-                    <form id="loginForm" onsubmit="event.preventDefault();">
+                    <form action="/auth/login" method="post" id="loginForm" onsubmit="">
                         <label for="loginUsername">Username</label>
                         <input name="username" id="loginUsername" type="text" class="input-box" placeholder="Username" required>
                         <label for="loginPassword">Password</label>
