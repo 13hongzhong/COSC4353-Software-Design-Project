@@ -3,44 +3,16 @@ const passport = require("passport")
 // const argon2 = requre("argon2");
 var LocalStrategy = require('passport-local');
 
+// passport will use this function to validate incoming username/passwords
+// in other words, is this a valid username and password?
 passport.use(new LocalStrategy(function verify(username, password, cb) {
     if (username == "user" && password == "password") {
         return cb(null, { user: username })
     }
     return cb(null, false, { message: 'Incorrect username or password.' })
-}));
-
-passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-        cb(null, user);
-    });
-});
-  
-passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-        return cb(null, user);
-    });
-});
 
 
-const router = express.Router();
-
-router.post("/isloggedin", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.send("good")
-    }
-    res.redirect("/login-Registration-page.html")
-})
-
-router.post('/login', passport.authenticate('local', {
-    successReturnToOrRedirect: '/client-profile-management.html',
-    failureRedirect: '/login-Registration-page.html',
-    failureMessage: true
-}));
-
-
-// Endpoint to handle user login
-// router.post("/login", (req, res) => {
+    // validate the username/password when logging in
 //     const username = req.body.username;
 //     const password = req.body.password;
 
@@ -111,8 +83,44 @@ router.post('/login', passport.authenticate('local', {
 //             );
 //         }
 //     );
-// });
+}));
 
+// passport will use this function to determine what gets stored in the user's session
+// every request the user makes from this point on will have this user information attached to it
+// this way we can id user's during every request they make
+passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+        cb(null, user);
+    });
+});
+
+// everytime a request is made, the client will pass just a user identifier
+// this function is run every request, and will pull additional information e.g. from a database
+//      in order to get all the user's data
+passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+        return cb(null, user);
+    });
+});
+
+
+const router = express.Router();
+
+// endpoint to check if a user has a valid session (they have a user id)
+router.post("/isloggedin", (req, res) => {
+    if (req.isAuthenticated()) {
+        res.send("good")
+    }
+    res.redirect("/login-Registration-page.html")
+})
+
+// Endpoint to handle user login
+// authenticates a user and attaches a user id to their session if successful
+router.post('/login', passport.authenticate('local', {
+    successReturnToOrRedirect: '/client-profile-management.html',
+    failureRedirect: '/login-Registration-page.html',
+    failureMessage: true
+}));
 
 
 // router.post('/register', (req, res) => {
@@ -172,7 +180,8 @@ router.post('/login', passport.authenticate('local', {
 //     });
 // })
 
-
+// removes the user field from the users session, passport attaches a logout function
+// to the request object in its middleware we can use
 router.post('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
