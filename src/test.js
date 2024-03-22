@@ -13,21 +13,21 @@ describe('Login Controller', () => {
     var authenticatedSession;
 
     it('POST /auth/login - should authenticate user with valid credentials', async () => {
-        const response = await request(app)
+        const response = await request(app) 
             .post('/auth/login')
             .send(mockLogin)
             .expect(302); 
     });
 
     it('POST /auth/login - should return 400 if username is too long', async () => {
-        const response = await request(app)
+        const response = await request(app) //need to authenticate
             .post('/auth/login')
             .send(mockLoginBadUsername)
             .expect(400);
     });
 
     it('POST /auth/login - should return 400 if password is too long', async () => {
-        const response = await request(app)
+        const response = await request(app) //need to authenticate
             .post('/auth/login')
             .send(mockLoginBadPassword)
             .expect(400);
