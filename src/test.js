@@ -3,8 +3,66 @@ const session = require('supertest-session')
 const app = require('./app');
 const { mockFuelQuoteHistory, mockFuelQuote } = require('./mock/mockFuelData');
 const { mockProfile, mockProfileBadAddress, mockProfileBadName } = require('./mock/mockProfileData');
+const { mockLogin, mockLoginBadUsername, mockLoginBadPassword } = require('./mock/mockLoginData');
+
 
 var testSession = session(app)
+
+describe('Login Controller', () => {
+
+    var authenticatedSession;
+
+    it('POST /auth/login - should authenticate user with valid credentials', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send(mockLogin)
+            .expect(302); 
+    });
+
+    it('POST /auth/login - should return 400 if username is too long', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send(mockLoginBadUsername)
+            .expect(400);
+    });
+
+    it('POST /auth/login - should return 400 if password is too long', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send(mockLoginBadPassword)
+            .expect(400);
+    });
+
+    it('POST /auth/login - should return 400 if password is too long', async () => {
+        const response = await authenticatedSession.post('/auth/login')
+            .send(mockLoginBadPassword)
+            .expect(400);
+    });
+
+
+    it('POST /auth/login - should return 400 if username is missing', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send({ password: mockLogin.password })
+            .expect(400);
+    });
+
+
+    it('POST /auth/login - should return 400 if both username and password are missing', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send({})
+            .expect(400);
+    });
+
+    it('POST /auth/login - should return 302 if authentication fails', async () => {
+        const response = await request(app)
+            .post('/auth/login')
+            .send({ username: 'invaliduser', password: 'invalidpassword' })
+            .expect(302);
+    });
+
+});
 
 describe('Fuel Quote Controller', () => {
     it('GET /quote/history - should return fuel quote history', async () => {
