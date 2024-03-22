@@ -1,5 +1,3 @@
-const { validationResult }  = require('express-validator');
-
 exports.getProfile = (req, res) => {
     res.json({
         fullName: "Alice Bob",

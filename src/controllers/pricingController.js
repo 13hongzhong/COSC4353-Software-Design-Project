@@ -1,4 +1,4 @@
-const { validationResult }  = require('express-validator');
+
 
 //handles fuel quote requests
 exports.getPrice = (req, res) => {
