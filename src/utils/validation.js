@@ -5,7 +5,7 @@ const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         next();
     } else {
-        res.redirect("/login-Registration-page.html")
+        return res.redirect("/login-Registration-page.html");
     }
 }
 
@@ -40,22 +40,22 @@ const validateRegistration = [
 const validateProfile = (req, res, next) => {
     payload = req.body
     if (!payload.fullName || (typeof payload.fullName !== "string") || payload.fullName.length > 50) {
-        res.status(400);
+        return res.status(400).json({});
     }
     if (!payload.address || (typeof payload.address !== "string") || payload.address.length > 100) {
-        res.status(400);
+        return res.status(400).json({});
     }
     if (payload.address2 && ((typeof payload.address !== "string") || payload.address.length > 100)) {
-        res.status(400);
+        return res.status(400).json({});
     }
     if (!payload.city || (typeof payload.city !== "string") || payload.city.length > 100) {
-        res.status(400);
+        return res.status(400).json({});
     }
     if (!payload.state || (typeof payload.state !== "string") || payload.state.length > 2) {
-        res.status(400);
+        return res.status(400).json({});
     }
     if (!payload.zipcode || (typeof payload.zipcode !== "string") || payload.zipcode.length > 9 || payload.zipcode.length < 5) {
-        res.status(400);
+        return res.status(400).json({});
     }
     next();
 }
