@@ -5,7 +5,7 @@ const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
         next();
     } else {
-        return res.redirect("/login-Registration-page.html");
+        res.redirect("/login-Registration-page.html")
     }
 }
 
@@ -26,38 +26,27 @@ const validateFuelQuote = (req, res, next) => {
     next();
 };
 
-const validateLogin = [
-    body('username').notEmpty().isLength(min=1, max=50),
-    body('password').notEmpty().isLength(min=1, max=50),
-]
-
-const validateRegistration = [
-    body('fullName').notEmpty().isLength(min=1, max=50),
-    body('username').notEmpty().isLength(min=1, max=50),
-    body('password').notEmpty().isLength(min=1, max=50),
-]
-
 const validateProfile = (req, res, next) => {
     payload = req.body
     if (!payload.fullName || (typeof payload.fullName !== "string") || payload.fullName.length > 50) {
-        return res.status(400).json({});
+        res.status(400);
     }
     if (!payload.address || (typeof payload.address !== "string") || payload.address.length > 100) {
-        return res.status(400).json({});
+        res.status(400);
     }
     if (payload.address2 && ((typeof payload.address !== "string") || payload.address.length > 100)) {
-        return res.status(400).json({});
+        res.status(400);
     }
     if (!payload.city || (typeof payload.city !== "string") || payload.city.length > 100) {
-        return res.status(400).json({});
+        res.status(400);
     }
     if (!payload.state || (typeof payload.state !== "string") || payload.state.length > 2) {
-        return res.status(400).json({});
+        res.status(400);
     }
     if (!payload.zipcode || (typeof payload.zipcode !== "string") || payload.zipcode.length > 9 || payload.zipcode.length < 5) {
-        return res.status(400).json({});
+        res.status(400);
     }
     next();
 }
 
-module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile, isLoggedIn, validateRegistration, validateLogin};
+module.exports = {fuelQuoteValidation, validateFuelQuote, validateProfile, isLoggedIn};

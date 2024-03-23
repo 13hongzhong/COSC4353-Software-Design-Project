@@ -5,6 +5,7 @@ const profileController = require('../controllers/profileController');
 const validation = require("../utils/validation")
 
 router.post("/getUserData", validation.isLoggedIn, profileController.getProfile)
+
 router.post("/updateUserData", validation.isLoggedIn, validation.validateProfile, profileController.updateProfile)
 
 module.exports = router
