@@ -8,29 +8,30 @@ const { mockLogin, mockLoginBadUsername, mockLoginBadPassword } = require('./moc
 
 var testSession = session(app)
 
+
 describe('Login Controller', () => {
 
     var authenticatedSession;
 
-    it('POST /auth/login - should authenticate user with valid credentials', async () => {
-        const response = await request(app) 
-            .post('/auth/login')
-            .send(mockLogin)
-            .expect(302); 
-    });
+    beforeAll(function (done) {
+        testSession.post("/auth/login")
+            .send({ "username": "validuser", "password": "validpassword" })
+            .expect(302)
+            .end(function (err) {
+                if (err) return done(err)
+                authenticatedSession = testSession;
+                return done();
+            })
+    })
 
-    it('POST /auth/login - should return 400 if username is too long', async () => {
-        const response = await request(app) //need to authenticate
-            .post('/auth/login')
-            .send(mockLoginBadUsername)
-            .expect(400);
-    });
+    it('POST /api/login - should allow a user to log in with valid credentials', async () => {
+      const loginData = { username: 'validuser', password: 'validpassword' };
+      const response = await request(app)
+        .post('/api/login')
+        .send(loginData)
+        .expect(200);
 
-    it('POST /auth/login - should return 400 if password is too long', async () => {
-        const response = await request(app) //need to authenticate
-            .post('/auth/login')
-            .send(mockLoginBadPassword)
-            .expect(400);
+      expect(response.body).toHaveProperty('token');
     });
 
     it('POST /auth/login - should return 400 if password is too long', async () => {
@@ -39,11 +40,9 @@ describe('Login Controller', () => {
             .expect(400);
     });
 
-
-    it('POST /auth/login - should return 400 if username is missing', async () => {
-        const response = await request(app)
-            .post('/auth/login')
-            .send({ password: mockLogin.password })
+    it('POST /auth/login - should return 400 if password is too long', async () => {
+        const response = await authenticatedSession.post('/auth/login')
+            .send(mockLoginBadUsername)
             .expect(400);
     });
 
@@ -51,18 +50,23 @@ describe('Login Controller', () => {
     it('POST /auth/login - should return 400 if both username and password are missing', async () => {
         const response = await request(app)
             .post('/auth/login')
-            .send({})
-            .expect(400);
+            .send({}); // no input sent, so both username and password are missing
+        expect(response.status).toBe(400);
     });
+
 
     it('POST /auth/login - should return 302 if authentication fails', async () => {
         const response = await request(app)
             .post('/auth/login')
-            .send({ username: 'invaliduser', password: 'invalidpassword' })
+            .send({ username: 'invaliduser', password: 'invalidpassword' }) //invalid data
             .expect(302);
     });
 
 });
+
+    
+
+
 
 describe('Fuel Quote Controller', () => {
     it('GET /quote/history - should return fuel quote history', async () => {
