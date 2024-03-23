@@ -24,15 +24,14 @@ describe('Login Controller', () => {
             })
     })
 
-    it('POST /api/login - should allow a user to log in with valid credentials', async () => {
-      const loginData = { username: 'validuser', password: 'validpassword' };
-      const response = await request(app)
-        .post('/api/login')
-        .send(loginData)
-        .expect(200);
-
-      expect(response.body).toHaveProperty('token');
+    it('POST /auth/login - should allow a user to log in with valid credentials', async () => {
+        const response = await request(app)
+            .post("/auth/login")
+            .send({ username: 'validuser', password: 'validpassword' })
+    
+        expect(response.statusCode).toBe(302);
     });
+    
 
     it('POST /auth/login - should return 400 if password is too long', async () => {
         const response = await authenticatedSession.post('/auth/login')
@@ -50,7 +49,7 @@ describe('Login Controller', () => {
     it('POST /auth/login - should return 400 if both username and password are missing', async () => {
         const response = await request(app)
             .post('/auth/login')
-            .send({}); // no input sent, so both username and password are missing
+            .send({}); 
         expect(response.status).toBe(400);
     });
 
@@ -63,9 +62,7 @@ describe('Login Controller', () => {
     });
 
 });
-
-    
-
+  
 
 
 describe('Fuel Quote Controller', () => {
