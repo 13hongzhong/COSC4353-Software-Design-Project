@@ -2,6 +2,8 @@ const express = require('express')
 const passport = require("passport")
 // const argon2 = requre("argon2");
 var LocalStrategy = require('passport-local');
+const { validationResult } = require('express-validator');
+const { validateRegistration, validateLogin } = require('../utils/validation');
 
 // passport will use this function to validate incoming username/passwords
 // in other words, is this a valid username and password?
@@ -117,16 +119,25 @@ router.post("/isloggedin", (req, res) => {
 
 // Endpoint to handle user login
 // authenticates a user and attaches a user id to their session if successful
-router.post('/login', passport.authenticate('local', {
+router.post('/login', validateLogin, (req, res, next) => {
+    const result = validationResult(req);
+    if (result.errors.length !== 0) {
+        return res.status(400).send({ errors: result.array() });
+    }
+    next();
+}, passport.authenticate('local', {
     successReturnToOrRedirect: '/landing page.html',
     failureRedirect: '/login-Registration-page.html',
     failureMessage: true
 }));
 
 
-router.post('/register', (req, res) => {
-    console.log(req.body);
-    res.status(200);
+router.post('/register', validateRegistration, (req, res) => {
+    const result = validationResult(req);
+    if (result.errors.length !== 0) {
+        return res.status(400).send();
+    }
+    return res.status(200).send();
 
     // var info = req.body;
 

@@ -13,7 +13,6 @@ exports.updateProfile = (req, res) => {
     if (!req.isAuthenticated()) {
         res.redirect('/login-Registration-page.html');
     }
-    console.log(req.body)
     
     // add db call to update data
     res.redirect('/landing page.html')

@@ -28,7 +28,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "supertest-session": "^5.0.1"
   },
   "type": "commonjs",
   "devDependencies": {
@@ -38,6 +39,9 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporters": ["json", "html"]
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   }
 }
