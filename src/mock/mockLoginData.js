@@ -14,3 +14,9 @@ const mockLoginBadPassword = {
     username: "aaaaaaaaaaa",
     password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 }
+
+module.exports =  {
+    mockLogin,
+    mockLoginBadUsername,
+    mockLoginBadPassword,
+};

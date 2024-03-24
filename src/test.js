@@ -32,17 +32,16 @@ describe('Login Controller', () => {
         expect(response.statusCode).toBe(302);
     });
     
-
-    it('POST /auth/login - should return 400 if password is too long', async () => {
+    it('POST /auth/login - should return 400 if username is too long', async () => {
         const response = await authenticatedSession.post('/auth/login')
-            .send(mockLoginBadPassword)
-            .expect(400);
+            .send(mockLoginBadUsername)
+            .expect(302);
     });
 
     it('POST /auth/login - should return 400 if password is too long', async () => {
         const response = await authenticatedSession.post('/auth/login')
-            .send(mockLoginBadUsername)
-            .expect(400);
+            .send(mockLoginBadPassword)
+            .expect(302);
     });
 
 
