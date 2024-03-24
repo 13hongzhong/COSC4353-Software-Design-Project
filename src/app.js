@@ -38,8 +38,8 @@ app.use(passport.session());
 app.use(passport.authenticate("session"))
 
 // attach routers to the application
-// app.use("/profile", profileRouter);
-// app.use("/auth", authRouter);
+app.use("/profile", profileRouter);
+app.use("/auth", authRouter);
 app.use("/quote", quoteRouter);
 
 // export

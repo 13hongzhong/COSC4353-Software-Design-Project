@@ -1,29 +1,20 @@
-const fuelQuote = require('../models/fuelQuote')
+const { validationResult }  = require('express-validator');
 
-//handles fuel quote creation
-exports.createQuote = (req, res) => {
-    // Validate request body
-    // const { fullName, email, address, gallonsRequested, deliveryDate } = req.body;
-    // if (!fullName || !email || !address || !gallonsRequested || !deliveryDate) {
-    //     return res.status(400).json({ message: 'All fields are required.' });
-    // }
-
-    // Perform additional validations as needed
-
-    // Create new fuel quote instance
-    const newQuote = new fuelQuote(fullName, email, address, gallonsRequested, deliveryDate);
-
-    // Save quote to database (to be implemented later)
-
-    response.statusCode(201).json({ message: 'Quote created successfully.', quote: newQuote });
+//handles fuel quote requests
+exports.getFuelQuoteHistory = (req, res) => {
+    //logic to fetch quote history from DB
+    
+    //send response
+    res.json({ history: [] });
 };
 
-//handles fuel quote history
-exports.getQuoteHistory = (req, res) => {
-    // Fetch quote history from DB
+exports.createFuelQuote = (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
-    // Hardcoded quote history for testing
-    const quoteHistory = {gallonsRequested: 500, deliveryAddress: 'Hoth', deliveryDate: '03/24/2024', suggestedPrice: 2000, totalAmountDue: 2500 };
-
-    response.statusCode(200).json({ quoteHistory });
+    //logic to create fuel quote in DB
+    
+    res.json({ message: 'Fuel quote created successfully' });
 };
