@@ -4,6 +4,7 @@ const app = require('./app');
 const { mockFuelQuoteHistory, mockFuelQuote } = require('./mock/mockFuelData');
 const { mockProfile, mockProfileBadAddress, mockProfileBadName } = require('./mock/mockProfileData');
 const { mockLogin, mockLoginBadUsername, mockLoginBadPassword } = require('./mock/mockLoginData');
+const { mockRegister, mockRegisterBadFullName, mockRegisterBadUsername,mockRegisterBadPassword } = require('./mock/mockRegistrationData');
 
 
 var testSession = session(app)
@@ -61,8 +62,69 @@ describe('Login Controller', () => {
     });
 
 });
-  
 
+describe('Registration Controller', () => {
+
+    var authenticatedSession;
+
+    beforeAll(function (done) {
+        testSession.post("/auth/register")
+            .send({ "fullName": "John Doe", "username": "validuser", "password": "validpassword" })
+            .expect(302)
+            .end(function (err) {
+                if (err) return done(err)
+                authenticatedSession = testSession;
+                return done();
+            });
+    })
+
+    // Valid credentials
+    it('POST /auth/register - should allow a user to register with valid credentials', async () => {
+        const response = await request(app)
+            .post("/auth/register")
+            .send({ fullName: 'John Doe', username: 'validuser', password: 'validpassword' })
+        expect(response.statusCode).toBe(302);
+    });
+    
+    // Too long fullname
+    it('POST /auth/register - should return 302 if fullname is too long', async () => {
+        const response = await authenticatedSession.post('/auth/register')
+            .send(mockRegisterBadFullName)
+            .expect(302);
+    });
+
+    // Too long username
+    it('POST /auth/register - should return 302 if username is too long', async () => {
+        const response = await authenticatedSession.post('/auth/register')
+            .send(mockRegisterBadUsername)
+            .expect(302);
+    });
+
+    // Too long password
+    it('POST /auth/register - should return 302 if password is too long', async () => {
+        const response = await authenticatedSession.post('/auth/register')
+            .send(mockRegisterBadPassword)
+            .expect(302);
+    });
+
+    // if fullname, username and password are missing
+    it('POST /auth/register - should return 400 if fullname, username and password are missing', async () => {
+        const response = await request(app)
+            .post('/auth/register')
+            .send({}); 
+        expect(response.status).toBe(400);
+    });
+
+    // Authentication fails
+    it('POST /auth/register - should return 302 if authentication fails', async () => {
+        const response = await request(app)
+            .post('/auth/register')
+            .send({ fullName: 'invalidname', username: 'invaliduser', password: 'invalidpassword' })
+            .expect(302);
+    });
+
+});
+  
 
 describe('Fuel Quote Controller', () => {
     it('GET /quote/history - should return fuel quote history', async () => {

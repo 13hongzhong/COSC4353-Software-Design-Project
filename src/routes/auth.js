@@ -132,12 +132,17 @@ router.post('/login', validateLogin, (req, res, next) => {
 }));
 
 
-router.post('/register', validateRegistration, (req, res) => {
+router.post('/register', validateRegistration, (req, res, next) => {
     const result = validationResult(req);
     if (result.errors.length !== 0) {
-        return res.status(400).send();
+        return res.status(400).send({ errors: result.array() });
     }
-    return res.status(200).send();
+    next();
+}, passport.authenticate('local', {
+    successReturnToOrRedirect: '/login-Registration-page.html',
+    failureRedirect: '/login-Registration-page.html',
+    failureMessage: true
+}));
 
     // var info = req.body;
 
@@ -193,7 +198,7 @@ router.post('/register', validateRegistration, (req, res) => {
 //             // send back user info to the client with the ID
 //             res.status(201).send({ message: "Registeration Successful", data: {id, username, fullName,}});
 //     });
-})
+
 
 // removes the user field from the users session, passport attaches a logout function
 // to the request object in its middleware we can use
